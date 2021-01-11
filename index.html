@@ -4,17 +4,18 @@
   <meta charset="utf-8">
   
   
-  <title>Hexo</title>
+  <title>TonyJia的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="TonyJia的博客">
 <meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
+<meta property="og:site_name" content="TonyJia的博客">
+<meta property="og:locale">
+<meta property="article:author" content="JIAKAIQI">
+<meta property="article:tag" content="web前端,react,vue,typescript">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="TonyJia的博客" type="application/atom+xml">
   
   
     <link rel="shortcut icon" href="/favicon.png">
@@ -42,7 +43,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
+        <a href="/" id="logo">TonyJia的博客</a>
       </h1>
       
     </div>
@@ -59,10 +60,10 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
       </div>
     </div>
   </div>
@@ -70,6 +71,193 @@
 
       <div class="outer">
         <section id="main">
+  
+    <article id="post-Function记录" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/11/Function%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time class="dt-published" datetime="2021-01-11T03:54:20.000Z" itemprop="datePublished">2021-01-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/01/11/Function%E8%AE%B0%E5%BD%95/">Function记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>关于js的内置对象Function：</strong><br>每个 JavaScript 函数实际上都是一个 Function 对象。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">运行 (<span class="function"><span class="title">function</span></span>()&#123;&#125;).constructor === Function // <span class="literal">true</span> 便可以得到这个结论。</span><br></pre></td></tr></table></figure>
+<p><strong>简单示例：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//通过Function构造函数创建一个函数，并在创建函数时，传入参数</span><br><span class="line">const sum = new Function(<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;return a + b&#x27;</span>);</span><br><span class="line">//打印</span><br><span class="line">console.log(sum(2, 6));</span><br><span class="line">//输出结果</span><br><span class="line">// expected output: 8</span><br></pre></td></tr></table></figure>
+<p><strong>Function的属性：</strong></p>
+<ol>
+<li><p>Function.caller 获取调用函数的具体对象</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">myFunc</span></span>() &#123;</span><br><span class="line">    // 一个函数如果是被全局调用，调用<span class="built_in">caller</span>属性返回一个null</span><br><span class="line">    // 所以第一层<span class="keyword">if</span>验证当前函数是否为全局函数</span><br><span class="line">   <span class="keyword">if</span> (myFunc.caller == null) &#123;</span><br><span class="line">      <span class="built_in">return</span> (<span class="string">&quot;该函数在全局作用域内被调用!&quot;</span>);</span><br><span class="line">   &#125; <span class="keyword">else</span></span><br><span class="line">        //返回 调用当前函数的函数</span><br><span class="line">      <span class="built_in">return</span> (<span class="string">&quot;调用我的是函数是&quot;</span> + myFunc.caller);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注：此属性为非标准规范的属性，所以不推荐使用。</p>
+</li>
+<li><p>Function.length 属性指明函数的形参个数</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 以下分为4种情况：</span></span><br><span class="line"><span class="comment"># 1</span></span><br><span class="line">// Function 构造器本身也是个Function。他的 length 属性值为 1 </span><br><span class="line">// 该属性不可修改（writable），不可枚举(Enumerable)，可删除(Configurabel)</span><br><span class="line">console.log(Function.length); /* 1 */</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2</span></span><br><span class="line">// 以下是函数被调用时实际传参的个数</span><br><span class="line">console.log((<span class="function"><span class="title">function</span></span>()        &#123;&#125;).length); /* 0 */</span><br><span class="line">console.log((<span class="keyword">function</span>(a)       &#123;&#125;).length); /* 1 */</span><br><span class="line">console.log((<span class="keyword">function</span>(a, b)    &#123;&#125;).length); /* 2 etc. */</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3</span></span><br><span class="line">// ...args为剩余参数的表达形式, 形参的数量不包括剩余参数个数，所以剩余参数的length为0</span><br><span class="line">console.log((<span class="keyword">function</span>(...args) &#123;&#125;).length);</span><br><span class="line">// 0, rest parameter is not counted</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4 </span></span><br><span class="line">// 形参个数仅包括第一个具有默认值之前的参数个数</span><br><span class="line">// 当以下函数的第二个形参具有默认值时，当前函数的形参length只返回1</span><br><span class="line">console.log((<span class="keyword">function</span>(a, b = 1, c) &#123;&#125;).length);</span><br><span class="line"></span><br><span class="line">// 1, only parameters before the first one with</span><br><span class="line">// a default value is counted(//只有在带有默认值的第一个参数之前的参数才会被统计)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/11/Function%E8%AE%B0%E5%BD%95/" data-id="ckjs2stca00004i0cfn1qajfz" data-title="Function记录" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Object-create方法整理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/10/Object-create%E6%96%B9%E6%B3%95%E6%95%B4%E7%90%86/" class="article-date">
+  <time class="dt-published" datetime="2021-01-10T07:22:57.000Z" itemprop="datePublished">2021-01-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/01/10/Object-create%E6%96%B9%E6%B3%95%E6%95%B4%E7%90%86/">Object.create方法整理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>基本定义：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ Object.create() 方法创建一个新对象，使用现有的对象来提供新创建的对象的__proto__（隐式原型）。</span><br></pre></td></tr></table></figure>
+<p><strong>1. 基本语法：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; $ Object.create(proto，[propertiesObject])</span><br></pre></td></tr></table></figure>
+<p><strong>2. 参数有2个：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; proto 第一个参数，作为创建新对象的原型对象</span><br><span class="line"></span><br><span class="line">**注：（创建新对象需要有一个爹，只有通过爹，才能创建出新的儿子对象）。</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; propertiesObject <span class="string">&#x27;可选&#x27;</span>。需要传入一个对象，该传入对象将为新创建的对象添加指定的属性值和对应的<span class="string">&quot;属性描述符&quot;</span>。</span><br><span class="line"></span><br><span class="line">**注：此参数必须是以属性描述的形式传入，否则会抛出语法异常：Uncaught TypeError: Property description must be an object（属性描述必须是一个对象）。</span><br></pre></td></tr></table></figure>
+<p><strong>3. 返回值：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一个新对象，带着指定的原型对象和属性。</span><br></pre></td></tr></table></figure>
+<p><strong>4. 基本示例：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">var o;</span><br><span class="line"></span><br><span class="line">// 创建一个原型为null的空对象</span><br><span class="line">o = Object.create(null);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">o = &#123;&#125;;</span><br><span class="line">// 以字面量方式创建的空对象就相当于:</span><br><span class="line">o = Object.create(Object.prototype);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">o = Object.create(Object.prototype, &#123;</span><br><span class="line">  // foo会成为所创建对象的数据属性</span><br><span class="line">  foo: &#123;</span><br><span class="line">    writable:<span class="literal">true</span>,</span><br><span class="line">    configurable:<span class="literal">true</span>,</span><br><span class="line">    value: <span class="string">&quot;hello&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  // bar会成为所创建对象的访问器属性</span><br><span class="line">  bar: &#123;</span><br><span class="line">    configurable: <span class="literal">false</span>,</span><br><span class="line">    get: <span class="function"><span class="title">function</span></span>() &#123; <span class="built_in">return</span> 10 &#125;,</span><br><span class="line">    <span class="built_in">set</span>: <span class="keyword">function</span>(value) &#123;</span><br><span class="line">      console.log(<span class="string">&quot;Setting `o.bar` to&quot;</span>, value);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/10/Object-create%E6%96%B9%E6%B3%95%E6%95%B4%E7%90%86/" data-id="ckjqtvluh0000hx0cd70v9clx" data-title="Object.create方法整理" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Object.assign方法整理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/01/Object.assign%E6%96%B9%E6%B3%95%E6%95%B4%E7%90%86/" class="article-date">
+  <time class="dt-published" datetime="2021-01-01T12:39:31.000Z" itemprop="datePublished">2021-01-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/01/01/Object.assign%E6%96%B9%E6%B3%95%E6%95%B4%E7%90%86/">Object.assign方法整理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>基本定义：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ Object.assign() 方法用于将所有可枚举属性的值从一个或多个源对象分配到目标对象。<span class="string">&quot;它返回的是目标对象&quot;</span></span><br></pre></td></tr></table></figure>
+<p>*注：如对可枚举概念不理解…<br><strong>1. 基本语法：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; $ Object.assign(target, ...sources)</span><br></pre></td></tr></table></figure>
+<p><strong>2. 参数：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;target 为目标对象；</span><br><span class="line"> sources 为源对象；(...sources剩余参数的展开，`...`为扩展运运算符)</span><br></pre></td></tr></table></figure>
+
+<p><strong>3. 注：assign使用相关注意事项</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;* 1.目标对象（target）与 源对象（<span class="built_in">source</span>）中具有相同属性时（相同的键），源对象（<span class="built_in">source</span>）属性会覆盖目标对象（target）的属性；如果有多个源对象传入时，相同属性出现在多个源对象中，后面会覆盖前面源对象的属性。</span><br><span class="line"></span><br><span class="line">&gt;* 2.只会拷贝源对象（<span class="built_in">source</span>）自身的，并且可枚举的属性到目标对象（target）。</span><br><span class="line"></span><br><span class="line">&gt;* 3.该方法使用源对象的[[Get]]和目标对象的[[Set]]。（[[Get]]和[[Set]]见Object.defineProperty()）</span><br><span class="line"></span><br><span class="line">&gt;* 4.如果合并源包含getter，这可能使其不适合将新属性合并到原型中。</span><br><span class="line">&gt;* 5.继承属性和不可枚举属性是不能拷贝的。</span><br><span class="line">&gt;* 6.原始类型会被包装为对象,那么只有字符串的包装对象才可能有自身的可枚举属性。</span><br><span class="line">&gt;* 7.异常会打断后续拷贝任务。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/01/Object.assign%E6%96%B9%E6%B3%95%E6%95%B4%E7%90%86/" data-id="ckjqt6kq500000c0cctut7tup" data-title="Object.assign方法整理" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-创建个人博客" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/12/30/%E5%88%9B%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" class="article-date">
+  <time class="dt-published" datetime="2020-12-30T04:04:38.000Z" itemprop="datePublished">2020-12-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/12/30/%E5%88%9B%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">创建个人博客</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/30/%E5%88%9B%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" data-id="ckjqt6kqb00020c0c5543g4ci" data-title="创建个人博客" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
   
     <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
@@ -106,7 +294,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/30/hello-world/" data-id="ckjavw2my0000rqfyficghl68" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2020/12/30/hello-world/" data-id="ckjqt6kqa00010c0c567kbn4b" data-title="Hello World" class="article-share-link">Teilen</a>
       
       
       
@@ -134,9 +322,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archiv</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li></ul>
     </div>
   </div>
 
@@ -144,9 +332,25 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">letzter Beitrag</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/01/11/Function%E8%AE%B0%E5%BD%95/">Function记录</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/10/Object-create%E6%96%B9%E6%B3%95%E6%95%B4%E7%90%86/">Object.create方法整理</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/01/Object.assign%E6%96%B9%E6%B3%95%E6%95%B4%E7%90%86/">Object.assign方法整理</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/30/%E5%88%9B%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">创建个人博客</a>
+          </li>
         
           <li>
             <a href="/2020/12/30/hello-world/">Hello World</a>
@@ -165,7 +369,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       
-      &copy; 2020 John Doe<br>
+      &copy; 2021 JIAKAIQI<br>
       Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
